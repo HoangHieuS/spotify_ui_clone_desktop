@@ -8,7 +8,7 @@ class SideMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
-      width: 280,
+      width: 230,
       color: Theme.of(context).primaryColor,
       child: Column(
         children: [

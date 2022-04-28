@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_ui_clone_desktop/controller/song_controller.dart';
 import 'package:spotify_ui_clone_desktop/data/data.dart';
 import 'package:spotify_ui_clone_desktop/models/models.dart';
+import 'package:spotify_ui_clone_desktop/widgets/widgets.dart';
 
 class TracksList extends StatelessWidget {
   final List<Song> tracks;
@@ -30,14 +33,13 @@ class TracksList extends StatelessWidget {
             color: selected
                 ? const Color(0xFF1DB954)
                 : Theme.of(context).iconTheme.color);
+        // bool _isSelected = true;
+        // final textStyle = _isSelected == true
+        //     ? const TextStyle(
+        //         color: Color(0xFF1DB954),
+        //       )
+        //     : TextStyle(color: Theme.of(context).iconTheme.color);
         return DataRow(
-          // color: MaterialStateProperty.resolveWith<Color?>(
-          //     (Set<MaterialState> states) {
-          //   if (states.contains(MaterialState.hovered)) {
-          //     return Colors.white.withOpacity(0.08);
-          //   }
-          //   return null;
-          // }),
           cells: [
             DataCell(
               Text(
@@ -65,8 +67,11 @@ class TracksList extends StatelessWidget {
             ),
           ],
           selected: selected,
-          onSelectChanged: (_) =>
-              context.read<CurrentTrackModel>().selectTrack(e),
+          onSelectChanged: (_) => Get.to(
+            CurrentTrack(track: e),
+          ),
+          // context.read<CurrentTrackModel>().selectTrack(e),
+          // Get.put(SongController()).getCurrentSong(id: e.id, title: e.title, artist: e.artist),
         );
       }).toList(),
     );

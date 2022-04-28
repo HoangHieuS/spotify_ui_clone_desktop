@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:spotify_ui_clone_desktop/data/data.dart';
 
 import '../models/models.dart';
 
 class CurrentTrack extends StatelessWidget {
-  const CurrentTrack({Key? key}) : super(key: key);
+  final Song? track;
+  const CurrentTrack({Key? key, this.track}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,9 @@ class CurrentTrack extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: Row(
           children: [
-            const _TrackInfo(),
+            _TrackInfo(track: track),
             const Spacer(),
-            const _PlayerControls(),
+            _PlayerControls(track: track),
             const Spacer(),
             if (MediaQuery.of(context).size.width > 800) const _MoreControls(),
           ],
@@ -29,12 +31,17 @@ class CurrentTrack extends StatelessWidget {
 }
 
 class _TrackInfo extends StatelessWidget {
-  const _TrackInfo({Key? key}) : super(key: key);
+  const _TrackInfo({
+    Key? key,
+    this.track,
+  }) : super(key: key);
+
+  final Song? track;
 
   @override
   Widget build(BuildContext context) {
-    final selected = context.watch<CurrentTrackModel>().selected;
-    if (selected == null) return const SizedBox.shrink();
+    // final selected = context.watch<CurrentTrackModel>().selected;
+    if (track == null) return const SizedBox.shrink();
     return Row(
       children: [
         Image.asset(
@@ -49,12 +56,12 @@ class _TrackInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              selected.title,
+              track!.title,
               style: Theme.of(context).textTheme.bodyText1,
             ),
             const SizedBox(height: 4),
             Text(
-              selected.artist,
+              track!.artist,
               style: Theme.of(context)
                   .textTheme
                   .subtitle1!
@@ -73,11 +80,12 @@ class _TrackInfo extends StatelessWidget {
 }
 
 class _PlayerControls extends StatelessWidget {
-  const _PlayerControls({Key? key}) : super(key: key);
+  final Song? track;
+  const _PlayerControls({Key? key, this.track}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final selected = context.watch<CurrentTrackModel>().selected;
+    // final selected = context.watch<CurrentTrackModel>().selected;
 
     return Column(
       children: [
@@ -130,7 +138,7 @@ class _PlayerControls extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             Text(
-              selected?.duration ?? '0:00',
+              track?.duration ?? '0:00',
               style: Theme.of(context).textTheme.caption,
             ),
           ],

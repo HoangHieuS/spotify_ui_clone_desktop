@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:provider/provider.dart';
 import 'package:spotify_ui_clone_desktop/controller/song_controller.dart';
-// import 'package:spotify_ui_clone_desktop/controller/song_controller.dart';
 import 'package:spotify_ui_clone_desktop/data/data.dart';
-// import 'package:spotify_ui_clone_desktop/models/models.dart';
-// import 'package:spotify_ui_clone_desktop/widgets/widgets.dart';
 
 class TracksList extends StatelessWidget {
   final List<Song> tracks;
@@ -66,7 +62,12 @@ class TracksList extends StatelessWidget {
               ],
               // selected: selected,
               onSelectChanged: (_) {
-                currentTrackController.setCurrentTrack(e.id, e.title, e.artist);
+                currentTrackController.setCurrentTrack(
+                  e.id,
+                  e.title,
+                  e.artist,
+                  e.duration,
+                );
               },
             );
           }).toList(),

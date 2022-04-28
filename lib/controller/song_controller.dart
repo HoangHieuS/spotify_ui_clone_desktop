@@ -1,29 +1,15 @@
 import 'package:get/get.dart';
 
-class SongController extends GetxController {
-  String? id;
-  String? title;
-  String? artist;
-
-  getCurrentSong({
-    required id,
-    required title,
-    required artist,
-  }) {
-    this.id = id;
-    this.title = title;
-    this.artist = artist;
-  }
-}
-
 class CurrentTrackController extends GetxController {
   RxString id = ''.obs;
   RxString title = ''.obs;
   RxString artist = ''.obs;
+  RxString duration = ''.obs;
 
-  void setCurrentTrack(id, title, artist) {
+  void setCurrentTrack(id, title, artist, duration) {
     this.id.value = id;
     this.title.value = title;
     this.artist.value = artist;
+    this.duration.value = duration;
   }
 }

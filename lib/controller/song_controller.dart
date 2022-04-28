@@ -15,3 +15,15 @@ class SongController extends GetxController {
     this.artist = artist;
   }
 }
+
+class CurrentTrackController extends GetxController {
+  RxString id = ''.obs;
+  RxString title = ''.obs;
+  RxString artist = ''.obs;
+
+  void setCurrentTrack(id, title, artist) {
+    this.id.value = id;
+    this.title.value = title;
+    this.artist.value = artist;
+  }
+}

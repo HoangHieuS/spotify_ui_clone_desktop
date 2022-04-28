@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:spotify_ui_clone_desktop/data/data.dart';
 import 'package:spotify_ui_clone_desktop/models/models.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Montserrat',
           ),
     );
-    return GetMaterialApp(
+    return MaterialApp(
       title: 'Spotify UI Clone',
       debugShowCheckedModeBanner: false,
       theme: darkTheme.copyWith(
